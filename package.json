@@ -16,32 +16,32 @@
 	"contributes": {
 		"commands": [
 			{
-				"command": "zeek.helloWorld",
-				"title": "Hello World"
+				"command": "zeekContols.startZeek",
+				"title": "Start",
+				"icon": "$(debug-start)"
+			},
+			{
+				"command": "zeekContols.stopZeek",
+				"title": "Stop",
+				"icon": "$(debug-stop)"
+			},
+			{
+				"command": "zeekContols.restartZeek",
+				"title": "Restart",
+				"icon": "$(debug-rerun)"
 			},
 			{
 				"command": "zeekLogs.refreshEntity",
 				"title": "Refresh",
-				"icon": {
-					"dark": "resources/dark/refresh.svg",
-					"light": "resources/light/refresh.svg"
-				}
+				"icon": "$(debug-restart)"
 			},
 			{
 				"command": "fileExplorer.openFile",
 				"title": "Open File"
 			},
 			{
-				"command": "zeekContols.startZeek",
-				"title": "Start Zeek"
-			},
-			{
-				"command": "zeekContols.stopZeek",
-				"title": "Stop Zeek"
-			},
-			{
-				"command": "zeekContols.restartZeek",
-				"title": "Restart Zeek"
+				"command": "zeekContols.getZeekStatus",
+				"title": "Zeek Status"
 			}
 		],
 		"configuration": [
@@ -62,13 +62,6 @@
 						"type": "string",
 						"default": "jq",
 						"description": "jq executable path"
-					},
-					"zeekctl.cmd_options": {
-						"type": [
-							"array"
-						],
-						"default": [],
-						"description": "the multiple "
 					}
 				}
 			}
@@ -83,6 +76,21 @@
 		},
 		"menus": {
 			"view/title": [
+				{
+					"command": "zeekContols.startZeek",
+					"when": "view == zeekLogs",
+					"group": "navigation"
+				},
+				{
+					"command": "zeekContols.stopZeek",
+					"when": "view == zeekLogs",
+					"group": "navigation"
+				},
+				{
+					"command": "zeekContols.restartZeek",
+					"when": "view == zeekLogs",
+					"group": "navigation"
+				},
 				{
 					"command": "zeekLogs.refreshEntity",
 					"when": "view == zeekLogs",
@@ -104,6 +112,7 @@
 		"@types/mkdirp": "^1.0.2",
 		"@types/mocha": "^9.0.0",
 		"@types/node": "14.x",
+		"@types/node-schedule": "^1.3.2",
 		"@types/rimraf": "^3.0.2",
 		"@types/vscode": "^1.63.0",
 		"@typescript-eslint/eslint-plugin": "^5.9.1",
@@ -113,5 +122,8 @@
 		"glob": "^7.2.0",
 		"mocha": "^9.1.3",
 		"typescript": "^4.5.4"
+	},
+	"dependencies": {
+		"node-schedule": "^2.1.0"
 	}
 }

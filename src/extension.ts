@@ -45,6 +45,10 @@ export function activate(context: vscode.ExtensionContext) {
 		zeekControl.restartZeek();
 	});
 
+	vscode.commands.registerCommand('zeekContols.getZeekStatus', () => {
+		zeekControl.getZeekStatus();
+	});
+
 	context.subscriptions.push(disposable);
 }
 
